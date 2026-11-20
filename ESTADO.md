@@ -140,6 +140,18 @@ Reset de datos de la app: adb shell pm clear local.acetv. Al pegar comandos, sus
 - Reglas que no cubre: p. ej. "MOVISTAR LALIGA" (sin "plus") no se une a "M+ LaLiga"; añadir sinónimos en
   ChannelMerge.key si hace falta tras ver el resultado con lista.m3u.
 
+## Distribución — Descarga directa desde GitHub Releases
+
+- **Repositorio:** https://github.com/drollo77/acetv-firetv-oc
+- **Release v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.0
+- **Enlace directo al APK:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.0/app-debug.apk
+- **Tamaño APK:** 3.9 MB (4,059,013 bytes)
+- **Instalación en Fire TV:**
+  - **Downloader** (app de Amazon): pegar enlace directo → instala automáticamente
+  - **ADB:** `adb install app/build/outputs/apk/debug/app-debug.apk`
+- **Token PAT GitHub:** configurado en máquina local para push y API (expira 2027-02-xx)
+- **Flujo de release:** commit → tag `vX.Y.Z` → `git push origin main vX.Y.Z` → crear release en GitHub web → subir APK como asset vía API
+
 ## Pendiente / hoja de ruta
 1. (Hecho en v0.7.0: fusión de canales por nombre y país, con las reglas de la app webOS.)
 2. (Hecho en v0.4.0: vigilante 15 s, timeout 45 s, panel de estadísticas.) Varias fuentes: arrancar con la que funcionó, cambio manual, 1 reintento y salto a la siguiente (3 en la última),
