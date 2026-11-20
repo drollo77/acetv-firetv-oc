@@ -35,6 +35,12 @@ class ChannelMergeTest {
         assertEquals(ChannelMerge.key("Teledeporte"), ChannelMerge.key("TELEDEPORTE 1080p (SOLO EVENTOS)"))
         assertEquals(ChannelMerge.key("Canal Spain HD"), ChannelMerge.key("canal"))
         assertEquals(ChannelMerge.key("Fútbol Uno"), ChannelMerge.key("FUTBOL UNO 720p"))
+        // nombres de la lista M3U: "M." por "M+", "Movistar X" por "M+ X", "LA 1" por "La 1 TVE"
+        assertEquals(ChannelMerge.key("M+ Deportes 2 720p *"), ChannelMerge.key("M. Deportes 2 HD"))
+        assertEquals(ChannelMerge.key("M+ VAMOS 2 720p *"), ChannelMerge.key("Movistar Vamos 2"))
+        assertEquals(ChannelMerge.key("M+ LaLiga HD"), ChannelMerge.key("MOVISTAR LALIGA"))
+        assertEquals(ChannelMerge.key("La 1 TVE 4K **"), ChannelMerge.key("LA 1 Spain"))
+        assertEquals(ChannelMerge.key("La 2 TVE 1080p *"), ChannelMerge.key("LA 2 Spain"))
     }
 
     @Test
@@ -45,6 +51,8 @@ class ChannelMergeTest {
         assertFalse(ChannelMerge.key("Canal [ES]") == ChannelMerge.key("Canal [PT]"))
         assertFalse(ChannelMerge.key("Canal [ES]") == ChannelMerge.key("Canal"))
         assertFalse(ChannelMerge.key("Bein Sports 3 TR 720p *") == ChannelMerge.key("Bein Sports TR 720p *"))
+        assertFalse(ChannelMerge.key("M. Deportes 2 HD") == ChannelMerge.key("M+ Deportes 1080p *"))
+        assertFalse(ChannelMerge.key("La 1 TVE 4K **") == ChannelMerge.key("La 2 TVE 1080p *"))
     }
 
     @Test
@@ -105,6 +113,15 @@ class ChannelMergeTest {
         assertEquals(listOf("A", "B"), rec.map { it.name })
         assertEquals(listOf("G"), ChannelMerge.groupsOf(rows))
         assertEquals(1, ChannelMerge.manualRow(h(7)).sources.size)
+    }
+
+    @Test
+    fun quitarRecientePorFila() {
+        val rows = ChannelMerge.merge(listOf(ch(1, "A 720p"), ch(2, "A 1080p"), ch(3, "B")))
+        val recents = listOf(h(1), h(3), h(2))
+        assertEquals(listOf(h(3)), ChannelMerge.removeRecent(rows, recents, ChannelMerge.key("A")))
+        assertEquals(listOf(h(1), h(2)), ChannelMerge.removeRecent(rows, recents, ChannelMerge.key("B")))
+        assertEquals(recents, ChannelMerge.removeRecent(rows, recents, "otra"))
     }
 
     @Test

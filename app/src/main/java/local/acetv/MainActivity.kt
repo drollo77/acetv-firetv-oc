@@ -411,12 +411,45 @@ class MainActivity : Activity() {
                     return true
                 }
                 KeyEvent.KEYCODE_MENU -> {
-                    sourceFailed("prueba manual (Menu)")
+                    showSources()
                     return true
                 }
             }
+        } else if (keyCode == KeyEvent.KEYCODE_MENU && panel.visibility == View.VISIBLE) {
+            deleteSelectedRecent()
+            return true
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    // Menu mientras se reproduce: lista las fuentes del canal y marca la que esta en uso
+    private fun showSources() {
+        val p = plan ?: return
+        val r = currentRow ?: return
+        val sb = StringBuilder(r.name)
+        for ((i, l) in p.labels().withIndex()) {
+            sb.append("\n").append(if (i == p.index) "> " else "   ").append(i + 1).append("  ").append(l)
+        }
+        sb.append("\n(izquierda/derecha cambian de fuente)")
+        ui.removeCallbacks(clearInfo)
+        info.text = sb.toString()
+        info.visibility = View.VISIBLE
+        ui.postDelayed(clearInfo, 6000)
+    }
+
+    // Menu en la lista "Recientes": quita el canal marcado de los recientes
+    private fun deleteSelectedRecent() {
+        if (shownGroup != ChannelLogic.RECENT_LABEL) return
+        val pos = channelList.selectedItemPosition
+        if (pos < 0 || pos >= shownRows.size) return
+        val keep = ChannelMerge.removeRecent(
+            rows,
+            ChannelLogic.parseRecents(prefs.getString("recents", "")),
+            shownRows[pos].key
+        )
+        prefs.edit().putString("recents", ChannelLogic.joinRecents(keep)).apply()
+        showChannels(shownGroup)
+        if (shownRows.isNotEmpty()) channelList.setSelection(minOf(pos, shownRows.size - 1))
     }
 
     private fun playFromList(pos: Int) {

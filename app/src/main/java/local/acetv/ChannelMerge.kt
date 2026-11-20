@@ -30,6 +30,9 @@ object ChannelMerge {
     private val MOVISTAR_PLUS = Regex("movistar\\s*plus\\s*\\+?")
     private val MOVISTAR_PLUS_SIGN = Regex("movistar\\s*\\+")
     private val M_PLUS = Regex("\\bm\\s*\\+")
+    private val M_DOT = Regex("\\bm\\.\\s")
+    private val MOVISTAR_WORD = Regex("^movistar\\s+")
+    private val LA_TVE = Regex("\\bla\\s*([12])\\s+tve\\b")
     private val LA_LIGA = Regex("\\bla\\s+liga\\b")
 
     /** Codigo de pais entre corchetes, p. ej. "[ES]" -> "ES"; "" si no hay. */
@@ -52,8 +55,11 @@ object ChannelMerge {
         n = MARKS.replace(n, "").lowercase()
         n = MOVISTAR_PLUS.replace(n, "m+ ")
         n = MOVISTAR_PLUS_SIGN.replace(n, "m+ ")
+        n = M_DOT.replace(n, "m+ ")
+        n = MOVISTAR_WORD.replace(n, "m+ ")
         n = M_PLUS.replace(n, "m+")
         n = LA_LIGA.replace(n, "laliga")
+        n = LA_TVE.replace(n, "la$1")
         val compact = n.filter { it.isLetterOrDigit() || it == '+' }
         return country(title) + "|" + compact
     }
@@ -134,6 +140,12 @@ object ChannelMerge {
             if (seen.add(r.key)) out.add(r)
         }
         return out
+    }
+
+    /** Quita de los hashes recientes todos los que pertenecen a la fila `key`. */
+    fun removeRecent(rows: List<Row>, hashes: List<String>, key: String): List<String> {
+        val m = byHash(rows)
+        return hashes.filter { m[it]?.key != key }
     }
 
     /** Fila de un ID escrito a mano, que no esta en la lista. */
