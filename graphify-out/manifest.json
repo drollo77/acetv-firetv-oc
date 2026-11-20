@@ -1,0 +1,146 @@
+{
+  "app/build.gradle.kts": {
+    "mtime": 1794874028.6716096,
+    "seen": 1794954403.8385363,
+    "ast_hash": "e08c7283e35c24c2ceaa16ff59c598df",
+    "semantic_hash": "e08c7283e35c24c2ceaa16ff59c598df"
+  },
+  "app/src/main/java/io/nayuki/qrcodegen/BitBuffer.java": {
+    "mtime": 1794873991.212438,
+    "seen": 1794954403.8385396,
+    "ast_hash": "4c1536a60c565816dbdfa141ca9e46bf",
+    "semantic_hash": "4c1536a60c565816dbdfa141ca9e46bf"
+  },
+  "app/src/main/java/io/nayuki/qrcodegen/DataTooLongException.java": {
+    "mtime": 1794873991.2144382,
+    "seen": 1794954403.838541,
+    "ast_hash": "3b2f375679960fb507c088d00e8fb500",
+    "semantic_hash": "3b2f375679960fb507c088d00e8fb500"
+  },
+  "app/src/main/java/io/nayuki/qrcodegen/QrCode.java": {
+    "mtime": 1794873991.2174382,
+    "seen": 1794954403.8385422,
+    "ast_hash": "d57a2a841ea666110fc13d64a02c2241",
+    "semantic_hash": "d57a2a841ea666110fc13d64a02c2241"
+  },
+  "app/src/main/java/io/nayuki/qrcodegen/QrSegment.java": {
+    "mtime": 1794873991.2204385,
+    "seen": 1794954403.8385434,
+    "ast_hash": "fba63588612b831d319331030e098230",
+    "semantic_hash": "fba63588612b831d319331030e098230"
+  },
+  "app/src/main/java/local/acetv/Channels.kt": {
+    "mtime": 1794873945.4870079,
+    "seen": 1794954403.8385444,
+    "ast_hash": "60b4375b407405d85797e969cc45c0c3",
+    "semantic_hash": "60b4375b407405d85797e969cc45c0c3"
+  },
+  "app/src/main/java/local/acetv/HttpServer.kt": {
+    "mtime": 1794873959.9624608,
+    "seen": 1794954403.838546,
+    "ast_hash": "7302e5242da4f508915873da2fd4ffbe",
+    "semantic_hash": "7302e5242da4f508915873da2fd4ffbe"
+  },
+  "app/src/main/java/local/acetv/ListParsers.kt": {
+    "mtime": 1794873955.2363129,
+    "seen": 1794954403.8385468,
+    "ast_hash": "1ec6ec45522c9fd081e1a8d1fbdeac9c",
+    "semantic_hash": "1ec6ec45522c9fd081e1a8d1fbdeac9c"
+  },
+  "app/src/main/java/local/acetv/MainActivity.kt": {
+    "mtime": 1794874000.6967347,
+    "seen": 1794954403.8385477,
+    "ast_hash": "fe56339b4d5d21211d098724d6de109c",
+    "semantic_hash": "fe56339b4d5d21211d098724d6de109c"
+  },
+  "app/src/main/java/local/acetv/MiniJson.kt": {
+    "mtime": 1794873950.34916,
+    "seen": 1794954403.8385484,
+    "ast_hash": "74c20823c88e89acf0780160081cfa06",
+    "semantic_hash": "74c20823c88e89acf0780160081cfa06"
+  },
+  "app/src/main/java/local/acetv/QrRender.kt": {
+    "mtime": 1794873979.2120628,
+    "seen": 1794954403.8385496,
+    "ast_hash": "26e586a233a5cd6de88bdb037f38edbc",
+    "semantic_hash": "26e586a233a5cd6de88bdb037f38edbc"
+  },
+  "app/src/main/java/local/acetv/RemoteApi.kt": {
+    "mtime": 1794873969.5757613,
+    "seen": 1794954403.8385508,
+    "ast_hash": "e8afa68f18d4594f5ac39cf9cfdec9ad",
+    "semantic_hash": "e8afa68f18d4594f5ac39cf9cfdec9ad"
+  },
+  "app/src/main/java/local/acetv/RemoteSession.kt": {
+    "mtime": 1794873964.802612,
+    "seen": 1794954403.8385515,
+    "ast_hash": "818f8ca21134bb06cc98d4ab927ad7a2",
+    "semantic_hash": "818f8ca21134bb06cc98d4ab927ad7a2"
+  },
+  "app/src/main/java/local/acetv/RemoteSupport.kt": {
+    "mtime": 1794873974.3789117,
+    "seen": 1794954403.8385527,
+    "ast_hash": "447f6321d793c9d6ab1beda4bbe157a4",
+    "semantic_hash": "447f6321d793c9d6ab1beda4bbe157a4"
+  },
+  "app/src/main/java/local/acetv/StallDetector.kt": {
+    "mtime": 1794873996.0615897,
+    "seen": 1794954403.8385537,
+    "ast_hash": "8c2eb36f237e9052284bed45a54412fd",
+    "semantic_hash": "8c2eb36f237e9052284bed45a54412fd"
+  },
+  "app/src/test/java/local/acetv/ChannelLogicTest.kt": {
+    "mtime": 1794874023.789457,
+    "seen": 1794954403.8385546,
+    "ast_hash": "ca3de1097df3c04ea06b52229950c8d5",
+    "semantic_hash": "ca3de1097df3c04ea06b52229950c8d5"
+  },
+  "app/src/test/java/local/acetv/ListParsersTest.kt": {
+    "mtime": 1794874023.7914572,
+    "seen": 1794954403.8385556,
+    "ast_hash": "cc698bb9e3366cb58184bb36b7cf4a17",
+    "semantic_hash": "cc698bb9e3366cb58184bb36b7cf4a17"
+  },
+  "app/src/test/java/local/acetv/MiniHttpServerTest.kt": {
+    "mtime": 1794874023.7944572,
+    "seen": 1794954403.8385568,
+    "ast_hash": "77f11c47f07f92d62a02bf78500c014a",
+    "semantic_hash": "77f11c47f07f92d62a02bf78500c014a"
+  },
+  "app/src/test/java/local/acetv/QrAndPanelTest.kt": {
+    "mtime": 1794874023.7974572,
+    "seen": 1794954403.8385575,
+    "ast_hash": "d7c722ced9b3c7d68d540bf8a46cdae5",
+    "semantic_hash": "d7c722ced9b3c7d68d540bf8a46cdae5"
+  },
+  "app/src/test/java/local/acetv/RemoteTest.kt": {
+    "mtime": 1794874023.7994573,
+    "seen": 1794954403.8385584,
+    "ast_hash": "2dddca9a7344b61166d5f0f4b219c77a",
+    "semantic_hash": "2dddca9a7344b61166d5f0f4b219c77a"
+  },
+  "build.gradle.kts": {
+    "mtime": 1794670130.2811093,
+    "seen": 1794954403.8385592,
+    "ast_hash": "df2b8e0083eff4fdcfbbed2dc79a18b3",
+    "semantic_hash": "df2b8e0083eff4fdcfbbed2dc79a18b3"
+  },
+  "gradlew": {
+    "mtime": 1794669864.2571769,
+    "seen": 1794954403.8385603,
+    "ast_hash": "7d63303a458e0ea7dfbe901aa084c6dd",
+    "semantic_hash": "7d63303a458e0ea7dfbe901aa084c6dd"
+  },
+  "lista.json": {
+    "mtime": 1794874044.406753,
+    "seen": 1794954403.8385615,
+    "ast_hash": "c8fd25b5f2b84f4925c33c5c379d4934",
+    "semantic_hash": "c8fd25b5f2b84f4925c33c5c379d4934"
+  },
+  "settings.gradle.kts": {
+    "mtime": 1794670093.8041642,
+    "seen": 1794954403.8385625,
+    "ast_hash": "8e2e65da3f4883330ff3e39edef3af93",
+    "semantic_hash": "8e2e65da3f4883330ff3e39edef3af93"
+  }
+}

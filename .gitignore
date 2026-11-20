@@ -1,0 +1,18 @@
+# Gradle
+.gradle/
+build/
+*/build/
+.idea/
+*.iml
+local.properties
+
+# Android Studio
+captures/
+*.AndroidStudio*
+
+# APKs (no versionar, se suben a Releases)
+app/build/outputs/
+
+# OS
+.DS_Store
+Thumbs.db
