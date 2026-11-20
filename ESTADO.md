@@ -1,6 +1,6 @@
 # AceTV para Fire TV - estado del proyecto
 
-Versión: **0.7.0** (fusión de canales con varias fuentes, cambio y reintento de fuentes; servidor del móvil con QR; listas integradas, vigilante, estadísticas, recientes, zapping)
+Versión: **0.7.1** (fusión de canales con más reglas, Menú = fuentes / borrar reciente; fuentes con reintento y cambio manual; servidor del móvil con QR; listas integradas, vigilante, estadísticas)
 
 ## Objetivo
 App nativa Android (Kotlin + Media3/ExoPlayer) para Fire TV equivalente a la app webOS ya terminada (v1.9.0):
@@ -139,6 +139,30 @@ Reset de datos de la app: adb shell pm clear local.acetv. Al pegar comandos, sus
 - Servidor: stop() espera al hilo de aceptación (una prueba fallaba al azar). Tests: 66.
 - Reglas que no cubre: p. ej. "MOVISTAR LALIGA" (sin "plus") no se une a "M+ LaLiga"; añadir sinónimos en
   ChannelMerge.key si hace falta tras ver el resultado con lista.m3u.
+
+## Distribución — Descarga directa desde GitHub Releases
+
+- **Repositorio:** https://github.com/drollo77/acetv-firetv-oc
+- **Release v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.0
+- **Enlace directo al APK:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.0/app-debug.apk
+- **Tamaño APK:** 3.9 MB (4,059,013 bytes)
+- **Instalación en Fire TV:**
+  - **Downloader** (app de Amazon): pegar enlace directo → instala automáticamente
+  - **ADB:** `adb install app/build/outputs/apk/debug/app-debug.apk`
+- **Token PAT GitHub:** configurado en máquina local para push y API (expira 2027-02-xx)
+- **Flujo de release:** commit → tag `vX.Y.Z` → `git push origin main vX.Y.Z` → crear release en GitHub web → subir APK como asset vía API
+
+## Teclas y reglas añadidas (v0.7.1)
+
+- Reproduciendo: ▲/▼ y CH+/CH- zapping dentro del grupo (400 ms de espera); ◄/► cambian de fuente; OK estadísticas;
+  Menú lista las fuentes del canal (6 s, marca la actual); Back vuelve a la lista. En la lista: OK reproduce; en
+  "★ Recientes" Menú borra el canal marcado; en "+ Nuevo QR / ajustes" OK genera un código nuevo.
+- Reglas de fusión añadidas tras ver lista.m3u (títulos tipo "M. Deportes 2 HD --> New Loop ...446"): "M." = "M+",
+  "Movistar X" = "M+ X" (juicio nuestro: revisar si une canales distintos), "LA 1/LA 2" = "La 1 TVE/La 2 TVE".
+- lista.m3u: grupos "Internacional" (192), "New Loop" (72), "New Era" (30): son nombres de origen, no de contenido;
+  los canales solo del M3U caen en esos grupos (grupo de la primera aparición). Posible mejora: reasignar grupos.
+- Tests: 67 (1 conocido fallido: `listaRealDelProyecto` — bug en el origen, las listas v0.7.1 no tienen los datos
+  que el test espera para "M+ Deportes").
 
 ## Distribución — Descarga directa desde GitHub Releases
 
