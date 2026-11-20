@@ -143,9 +143,10 @@ Reset de datos de la app: adb shell pm clear local.acetv. Al pegar comandos, sus
 ## Distribución — Descarga directa desde GitHub Releases
 
 - **Repositorio:** https://github.com/drollo77/acetv-firetv-oc
-- **Release v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.0
-- **Enlace directo al APK:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.0/app-debug.apk
-- **Tamaño APK:** 3.9 MB (4,059,013 bytes)
+- **Release v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.0 — APK 3.9 MB
+- **Release v0.7.1:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.1 — APK 3.9 MB
+- **Enlace directo v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.0/app-debug.apk
+- **Enlace directo v0.7.1:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.1/app-debug.apk
 - **Instalación en Fire TV:**
   - **Downloader** (app de Amazon): pegar enlace directo → instala automáticamente
   - **ADB:** `adb install app/build/outputs/apk/debug/app-debug.apk`
