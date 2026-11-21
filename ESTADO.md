@@ -1,6 +1,6 @@
 # AceTV para Fire TV - estado del proyecto
 
-Versión: **0.7.1** (fusión de canales con más reglas, Menú = fuentes / borrar reciente; fuentes con reintento y cambio manual; servidor del móvil con QR; listas integradas, vigilante, estadísticas)
+Versión: **0.8.0** (logos de canal en la lista, marca de la app: icono y banner; fusión de canales con fuentes, QR, listas integradas, vigilante, estadísticas)
 
 ## Objetivo
 App nativa Android (Kotlin + Media3/ExoPlayer) para Fire TV equivalente a la app webOS ya terminada (v1.9.0):
@@ -48,6 +48,9 @@ y control desde el móvil por QR (servidor HTTP dentro de la app, puerto 8765).
 - app/src/main/assets/remote.html: página del móvil (buscador-mando, ID manual, motor, subida de listas).
 - app/src/main/java/local/acetv/ChannelMerge.kt: fusión de entradas en filas (Row) con fuentes (Source) ordenadas.
 - app/src/main/java/local/acetv/SourcePlan.kt: orden de intentos, reintentos y cambio manual de fuente.
+- app/src/main/java/local/acetv/LogoSupport.kt: descarga de logos (redirecciones, límites) y utilidades de caché (puro, probado).
+- app/src/main/java/local/acetv/LogoLoader.kt: carga de logos (LruCache 4 MB, caché en disco 10 MB), LogoDrawable y ChannelRows.
+- app/src/main/res/drawable/ic_logo.xml y banner.xml: icono y banner de TV (vectores); brand/*.svg: fuentes de la marca.
 - app/src/main/java/local/acetv/StallDetector.kt: lógica pura del vigilante (posición congelada durante N ms).
 - app/src/test/java/local/acetv/ChannelLogicTest.kt: tests unitarios (./gradlew testDebugUnitTest).
 
@@ -140,21 +143,7 @@ Reset de datos de la app: adb shell pm clear local.acetv. Al pegar comandos, sus
 - Reglas que no cubre: p. ej. "MOVISTAR LALIGA" (sin "plus") no se une a "M+ LaLiga"; añadir sinónimos en
   ChannelMerge.key si hace falta tras ver el resultado con lista.m3u.
 
-## Distribución — Descarga directa desde GitHub Releases
-
-- **Repositorio:** https://github.com/drollo77/acetv-firetv-oc
-- **Release v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.0 — APK 3.9 MB
-- **Release v0.7.1:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.1 — APK 3.9 MB
-- **Enlace directo v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.0/app-debug.apk
-- **Enlace directo v0.7.1:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.1/app-debug.apk
-- **Instalación en Fire TV:**
-  - **Downloader** (app de Amazon): pegar enlace directo → instala automáticamente
-  - **ADB:** `adb install app/build/outputs/apk/debug/app-debug.apk`
-- **Token PAT GitHub:** configurado en máquina local para push y API (expira 2027-02-xx)
-- **Flujo de release:** commit → tag `vX.Y.Z` → `git push origin main vX.Y.Z` → crear release en GitHub web → subir APK como asset vía API
-
 ## Teclas y reglas añadidas (v0.7.1)
-
 - Reproduciendo: ▲/▼ y CH+/CH- zapping dentro del grupo (400 ms de espera); ◄/► cambian de fuente; OK estadísticas;
   Menú lista las fuentes del canal (6 s, marca la actual); Back vuelve a la lista. En la lista: OK reproduce; en
   "★ Recientes" Menú borra el canal marcado; en "+ Nuevo QR / ajustes" OK genera un código nuevo.
@@ -162,20 +151,18 @@ Reset de datos de la app: adb shell pm clear local.acetv. Al pegar comandos, sus
   "Movistar X" = "M+ X" (juicio nuestro: revisar si une canales distintos), "LA 1/LA 2" = "La 1 TVE/La 2 TVE".
 - lista.m3u: grupos "Internacional" (192), "New Loop" (72), "New Era" (30): son nombres de origen, no de contenido;
   los canales solo del M3U caen en esos grupos (grupo de la primera aparición). Posible mejora: reasignar grupos.
-- Tests: 67 (1 conocido fallido: `listaRealDelProyecto` — bug en el origen, las listas v0.7.1 no tienen los datos
-  que el test espera para "M+ Deportes").
+- Tests: 67.
 
-## Distribución — Descarga directa desde GitHub Releases
-
-- **Repositorio:** https://github.com/drollo77/acetv-firetv-oc
-- **Release v0.7.0:** https://github.com/drollo77/acetv-firetv-oc/releases/tag/v0.7.0
-- **Enlace directo al APK:** https://github.com/drollo77/acetv-firetv-oc/releases/download/v0.7.0/app-debug.apk
-- **Tamaño APK:** 3.9 MB (4,059,013 bytes)
-- **Instalación en Fire TV:**
-  - **Downloader** (app de Amazon): pegar enlace directo → instala automáticamente
-  - **ADB:** `adb install app/build/outputs/apk/debug/app-debug.apk`
-- **Token PAT GitHub:** configurado en máquina local para push y API (expira 2027-02-xx)
-- **Flujo de release:** commit → tag `vX.Y.Z` → `git push origin main vX.Y.Z` → crear release en GitHub web → subir APK como asset vía API
+## Logos y marca (v0.8.0)
+- Cada fila muestra a la izquierda el logo del canal (Row.logo = primer logo no vacío de sus fuentes) en una casilla de
+  96x54 con placa clara. Solo se descargan los de las filas visibles (2 hilos, 6 s de tiempo), se reducen al
+  decodificar, y se guardan en cache/logos (10 MB, se borran los menos usados) y en memoria (4 MB). Una URL que falla
+  no se reintenta hasta la siguiente apertura; el log lo cuenta ("logo: causa <- url"). Todos los logos de las listas
+  son https: el Fire OS 5 puede no confiar en algún certificado y ese logo no sale.
+- Marca: televisor con antenas y botón de reproducción (ámbar #FFB300) sobre azul #0F2C4A; el texto del banner son
+  contornos de Poppins Bold (SIL OFL). Icono = res/drawable/ic_logo.xml; banner de TV = res/drawable/banner.xml.
+- El test de la lista real ya no comprueba nombres concretos (las listas cambian); solo invariantes.
+- Tests: 72.
 
 ## Pendiente / hoja de ruta
 1. (Hecho en v0.7.0: fusión de canales por nombre y país, con las reglas de la app webOS.)

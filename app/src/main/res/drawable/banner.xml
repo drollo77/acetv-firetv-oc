@@ -4,10 +4,14 @@
     android:height="180dp"
     android:viewportWidth="320"
     android:viewportHeight="180">
-    <path
-        android:fillColor="#1B3A5C"
-        android:pathData="M0,0h320v180h-320z" />
-    <path
-        android:fillColor="#FFFFFF"
-        android:pathData="M120,50 L120,130 L215,90 Z" />
+    <path android:fillColor="#0F2C4A" android:pathData="M0,0H320V180H0Z" />
+    <path android:fillColor="#FFB300" android:pathData="M0,170H320V180H0Z" />
+    <group android:translateX="16" android:translateY="30">
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="6" android:strokeLineJoin="round" android:pathData="M30,36H78A8,8 0 0 1 86,44V70A8,8 0 0 1 78,78H30A8,8 0 0 1 22,70V44A8,8 0 0 1 30,36Z" />
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="5" android:strokeLineCap="round" android:pathData="M54,36L38,17M54,36L70,17" />
+        <path android:strokeColor="#FFFFFF" android:strokeWidth="6" android:strokeLineCap="round" android:pathData="M40,88H68" />
+        <path android:fillColor="#FFB300" android:strokeColor="#FFB300" android:strokeWidth="3" android:strokeLineJoin="round" android:pathData="M46,47L46,67L65,57Z" />
+    </group>
+    <path android:fillColor="#FFFFFF" android:pathData="M153 94.3H140.9L139 100H130.7L142.4 67.7H151.5L163.2 100H154.9ZM150.9 88.2 146.9 76.4 143 88.2ZM178.1 74Q182.9 74 186.1 76.5Q189.4 79 190.4 83.6H182Q181 80.7 177.9 80.7Q175.8 80.7 174.5 82.4Q173.2 84 173.2 87.2Q173.2 90.3 174.5 92Q175.8 93.7 177.9 93.7Q181 93.7 182 90.7H190.4Q189.4 95.2 186.1 97.8Q182.9 100.4 178.1 100.4Q174.3 100.4 171.4 98.8Q168.5 97.1 166.8 94.2Q165.2 91.2 165.2 87.2Q165.2 83.2 166.8 80.2Q168.5 77.2 171.4 75.6Q174.3 74 178.1 74ZM218.6 89.1H200.8Q201 91.4 202.4 92.7Q203.7 94 205.7 94Q208.7 94 209.8 91.5H218.2Q217.5 94 215.9 96Q214.2 98.1 211.6 99.2Q209.1 100.4 206 100.4Q202.2 100.4 199.3 98.8Q196.3 97.1 194.7 94.2Q193 91.2 193 87.2Q193 83.2 194.7 80.2Q196.3 77.2 199.2 75.6Q202.2 74 206 74Q209.7 74 212.6 75.5Q215.5 77.1 217.1 80Q218.8 82.9 218.8 86.8Q218.8 87.9 218.6 89.1ZM210.7 84.7Q210.7 82.7 209.3 81.5Q208 80.3 205.9 80.3Q203.9 80.3 202.6 81.4Q201.2 82.6 200.9 84.7Z" />
+    <path android:fillColor="#FFB300" android:pathData="M247.1 67.7V74H238.6V100H230.7V74H222.2V67.7ZM281.4 67.7 270 100H260.1L248.7 67.7H257L265 92.1L273.1 67.7Z" />
 </vector>

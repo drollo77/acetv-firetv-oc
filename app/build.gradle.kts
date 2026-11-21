@@ -12,8 +12,8 @@ android {
         applicationId = "local.acetv"
         minSdk = 22
         targetSdk = 28
-        versionCode = 11
-        versionName = "0.7.0"
+        versionCode = 13
+        versionName = "0.8.0"
     }
 
     buildTypes {

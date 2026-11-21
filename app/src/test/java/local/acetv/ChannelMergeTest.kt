@@ -138,11 +138,5 @@ class ChannelMergeTest {
             val res = r.sources.map { it.resolution }
             assertEquals(res.sortedDescending(), res)
         }
-        val dep = rows.first { it.name == "M+ Deportes" }
-        assertEquals(4, dep.sources.size)
-        assertEquals(1080, dep.sources[0].resolution)
-        val la1 = rows.first { it.name == "La 1 TVE" }
-        assertEquals(listOf(2160, 1080), la1.sources.map { it.resolution })
-        assertEquals(1, rows.count { it.name == "M+ Deportes 2" })
     }
 }

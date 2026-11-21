@@ -69,6 +69,12 @@ class MainActivity : Activity() {
     private val io = Executors.newSingleThreadExecutor()
     private val ioStats = Executors.newSingleThreadExecutor()
     private val clearInfo = Runnable { info.visibility = View.GONE }
+    private lateinit var logos: LogoLoader
+    private var logoRefreshQueued = false
+    private val logoRefresh = Runnable {
+        logoRefreshQueued = false
+        (channelList.adapter as? ChannelRows)?.notifyDataSetChanged()
+    }
 
     // Lista: entradas por hash y filas fusionadas (un canal con varias fuentes)
     @Volatile private var channels: List<Channel> = emptyList()
@@ -124,6 +130,14 @@ class MainActivity : Activity() {
         intent.getStringExtra("mode")?.let { ed.putString("mode", it) }
         ed.apply()
 
+        logos = LogoLoader(java.io.File(cacheDir, "logos")) {
+            ui.post {
+                if (!logoRefreshQueued) {
+                    logoRefreshQueued = true
+                    ui.postDelayed(logoRefresh, 250)
+                }
+            }
+        }
         loadData()
         buildUi()
 
@@ -184,6 +198,7 @@ class MainActivity : Activity() {
         super.onDestroy()
         io.shutdown() // deja terminar las tareas ya encoladas (cierre de sesion)
         stopRemote()
+        logos.shutdown()
         ioStats.shutdown()
     }
 
@@ -326,7 +341,7 @@ class MainActivity : Activity() {
         }
         hideQrPanel()
         shownRows = if (g == ChannelLogic.RECENT_LABEL) recentRows() else rows.filter { it.group == g }
-        channelList.adapter = ListRows(this, shownRows.map { rowTitle(it) })
+        channelList.adapter = ChannelRows(this, shownRows.map { rowTitle(it) }, shownRows.map { it.logo }, logos)
         val cur = currentRow
         if (cur != null) {
             val i = shownRows.indexOfFirst { it.key == cur.key }

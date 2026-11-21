@@ -7,7 +7,8 @@
 
     <application
         android:label="AceTV"
-        android:icon="@drawable/banner"
+        android:icon="@drawable/ic_logo"
+        android:allowBackup="false"
         android:banner="@drawable/banner"
         android:usesCleartextTraffic="true"
         android:theme="@android:style/Theme.Material.NoActionBar">
